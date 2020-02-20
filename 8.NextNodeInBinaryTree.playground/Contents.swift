@@ -9,7 +9,7 @@ class TreeNode {
     var left: TreeNode?
     var right: TreeNode?
     var parent: TreeNode?
-    public init(_ val: Int) {
+    init(_ val: Int) {
         self.val = val
     }
 }
