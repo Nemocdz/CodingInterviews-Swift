@@ -10,22 +10,19 @@ class Solution {
         var start = 0
         var end = numbers.count - 1
         
-        while numbers[start] >= numbers[end] {
-            if end - start == 1 {
-                return numbers[end]
-            }
-            
+        while start < end {
             let mid = (start + end) / 2
             
-            // 如果 start mid end 三者相等，无法分辨数组头在哪个位置，只能遍历
-            if numbers[start] == numbers[mid] && numbers[start] == numbers[end] {
-                return numbers.min()!
-            }
-            
-            if numbers[start] <= numbers[mid] {
-                start = mid
-            } else if numbers[mid] <= numbers[end] {
+            if numbers[mid] < numbers[end] {
                 end = mid
+            } else if numbers[mid] > numbers[end] {
+                start = mid + 1
+            } else {
+                if numbers[start] == numbers[mid] {
+                    start += 1
+                } else {
+                    end = mid
+                }
             }
         }
         

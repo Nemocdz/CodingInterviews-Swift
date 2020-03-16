@@ -16,20 +16,15 @@ class Solution {
             return 2
         }
         
-        var products = (0...n).map{ _ in 0 }
-        products[1] = 1
-        products[2] = 2
-        products[3] = 3
+        var dp = (0...n).map{ $0 }
         
         for i in 4...n {
-            var temp = 0
-            for j in 1...(i/2) {
-                temp = max(temp, products[j] * products[i - j])
-                products[i] = temp
+            for j in 1...(i / 2) {
+                dp[i] = max(dp[i], dp[j] * dp[i - j])
             }
         }
         
-        return products[n]
+        return dp[n]
     }
 }
 

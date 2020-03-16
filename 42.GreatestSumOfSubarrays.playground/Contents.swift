@@ -10,14 +10,14 @@ class Solution {
             return 0
         }
         
-        var curSum = 0
-        var answer = Int.min
+        var dp = nums
+        var answer = dp[0]
         
-        for num in nums {
-            curSum = max(num, curSum + num)
-            answer = max(answer, curSum)
+        for i in 1..<nums.count {
+            dp[i] = max(dp[i], dp[i - 1] + dp[i])
+            answer = max(answer, dp[i])
         }
-        
+
         return answer
     }
 }

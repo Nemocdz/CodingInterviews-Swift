@@ -8,10 +8,11 @@ class Solution {
     func lengthOfLongestSubstring(_ s: String) -> Int {
         var answer = 0
         var start = 0
+        let s = Array(s)
         for end in 0..<s.count {
-            for temp in start..<end {
-                if s[.init(utf16Offset: temp, in: s)] == s[.init(utf16Offset: end, in: s)] {
-                    start = temp + 1
+            for i in start..<end {
+                if s[i] == s[end] {
+                    start = i + 1
                     break
                 }
             }
@@ -23,7 +24,7 @@ class Solution {
     func lengthOfLongestSubstring2(_ s: String) -> Int {
         var answer = 0
         var map = [Character:Int]()
-        var currentLength  = 0
+        var currentLength = 0
         for (index, c) in s.enumerated() {
             if let preIndex = map[c] {
                 if currentLength >= index - preIndex {

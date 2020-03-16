@@ -6,17 +6,19 @@ import Cocoa
 
 class Solution {
     func firstUniqChar(_ s: String) -> Character {
-        var mapCount = [Character: Int]()
+        // value = 1:true, >1:false
+        var map = [Character: Bool]()
+        
         for c in s {
-            if let count = mapCount[c] {
-                mapCount[c] = count + 1
+            if map.keys.contains(c) {
+                map[c] = false
             } else {
-                mapCount[c] = 1
+                map[c] = true
             }
         }
         
         for c in s {
-            if mapCount[c] == 1 {
+            if map[c] ?? false {
                 return c
             }
         }

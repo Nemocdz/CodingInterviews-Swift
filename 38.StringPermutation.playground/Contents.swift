@@ -7,24 +7,25 @@ import Cocoa
 class Solution {
     func permutation(_ s: String) -> [String] {
         var answers = [String]()
+        var temp = [Character]()
         
-        func _permutation(_ s: [Character], _ start:Int) {
-            if start == s.count - 1 {
-                answers.append(String(s))
+        func _permutation(_ s:[Character]) {
+            if s.isEmpty {
+                answers.append(String(temp))
             } else {
-                var s = s
-                for i in start..<s.count {
-                    // s[start,i) 中没有重复的 s[i]
-                    if start == i || !s[start..<i].contains(s[i]) {
-                        s.swapAt(start, i)
-                        _permutation(s, start + 1)
-                        s.swapAt(start, i)
+                for i in 0..<s.count {
+                    if i > 0 && s[i] == s[i - 1] {
+                        continue
                     }
+                    temp.append(s[i])
+                    _permutation(Array(s[0..<i]) + Array(s[(i + 1)...]))
+                    temp.removeLast()
                 }
             }
+            
         }
         
-        _permutation(Array(s), 0)
+        _permutation(Array(s).sorted())
         
         return answers
     }

@@ -17,11 +17,8 @@ func detectCycle(of head:ListNode?) -> ListNode? {
     var fast = head
     
     repeat {
-        if fast == nil {
-            return nil
-        }
         fast = fast?.next
-        if fast == nil || slow == nil {
+        if fast == nil {
             return nil
         }
         fast = fast?.next

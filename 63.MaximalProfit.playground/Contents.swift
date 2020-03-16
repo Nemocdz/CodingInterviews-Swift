@@ -8,19 +8,18 @@ import Cocoa
 
 class Solution {
     func maxProfit(_ prices: [Int]) -> Int {
-        // 第一位用于存储当前最小值
-        var mins = [Int.max]
-        for price in prices.dropLast() {
-            let curMin = min(mins[0], price)
-            mins[0] = curMin
-            mins.append(curMin)
+        if prices.isEmpty {
+            return 0
         }
         
+        var buyMin = prices.first!
         var answer = 0
-        //从第二位起算
-        for (price, min) in zip(prices, mins).dropFirst() {
-            answer = max(answer, price - min)
+        
+        for price in prices.dropFirst() {
+            answer = max(answer, price - buyMin)
+            buyMin = min(buyMin, price)
         }
+        
         return answer
     }
 }

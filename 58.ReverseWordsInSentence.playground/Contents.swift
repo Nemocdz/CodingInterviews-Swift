@@ -24,8 +24,9 @@ class Solution {
     }
     
     func reverseLeftWords(_ s: String, _ n: Int) -> String {
-        let left = String(s[String.Index(utf16Offset: 0, in: s)..<String.Index(utf16Offset: n, in: s)].reversed())
-        let right = String(s[String.Index(utf16Offset: n, in: s)...].reversed())
+        let s = Array(s)
+        let left = String(s[..<n].reversed())
+        let right = String(s[n...].reversed())
         return String((left + right).reversed())
     }
 }

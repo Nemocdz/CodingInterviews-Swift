@@ -8,19 +8,18 @@ import Cocoa
 
 class Solution {
     func maxValue(_ grid: [[Int]]) -> Int {
-        var maxGrid = grid.map{ $0.map{ $0 } }
-        
+        var dp = grid
         let height = grid.count
         let width = grid.first?.count ?? 0
         
-        for row in 0..<height {
-            for column in 0..<width {
-                let left = column > 0 ? maxGrid[row][column - 1] : 0
-                let up = row > 0 ? maxGrid[row - 1][column] : 0
-                maxGrid[row][column] = maxGrid[row][column] + max(left, up)
+        for i in 0..<height {
+            for j in 0..<width {
+                let top = i > 0 ? dp[i - 1][j] : 0
+                let left = j > 0 ? dp[i][j - 1] : 0
+                dp[i][j] = dp[i][j] + max(top, left)
             }
         }
         
-        return maxGrid.last?.last ?? 0
+        return dp.last?.last ?? 0
     }
 }

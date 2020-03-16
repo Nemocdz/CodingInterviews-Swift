@@ -17,7 +17,7 @@ class Solution {
     func pathSum(_ root: TreeNode?, _ sum: Int) -> [[Int]] {
         var answers = [[Int]]()
         var temp = [Int]()
-        
+            
         func findPath(_ root: TreeNode, _ sum: Int) {
             let remain = sum - root.val
             temp.append(root.val)

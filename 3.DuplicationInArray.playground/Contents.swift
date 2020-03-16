@@ -30,7 +30,7 @@ class Solution {
     }
     
     func findRepeatNumber(_ nums: [Int]) -> Int {
-        var array = (0...nums.count).map{ $0 }
+        var array = (0...nums.count).map{ _ in 0 }
         for num in nums {
             if array[num] == 0 {
                 array[num] = 1
