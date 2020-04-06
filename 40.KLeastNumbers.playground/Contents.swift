@@ -11,13 +11,17 @@ class Solution {
             return []
         }
         
-        func partition(_ arr: inout [Int], _ start: Int, _ end: Int) -> Int {
+        var arr = arr
+        var start = 0
+        var end = arr.count - 1
+        
+        func partition(_ start: Int, _ end: Int) -> Int {
             var start = start
             var end = end
             let flag = arr[start]
             
             while start < end {
-                while start < end && arr[end] >= flag {
+                while arr[end] >= flag && start < end {
                     end -= 1
                 }
                 
@@ -26,7 +30,7 @@ class Solution {
                     start += 1
                 }
                 
-                while start < end && arr[start] <= flag {
+                while arr[start] <= flag && start < end {
                     start += 1
                 }
                 
@@ -38,12 +42,8 @@ class Solution {
             return start
         }
         
-        var arr = arr
-        var start = 0
-        var end = arr.count - 1
-        
         while true {
-            let index = partition(&arr, start, end)
+            let index = partition(start, end)
             if index > k - 1 {
                 end = index - 1
             } else if index < k - 1 {
